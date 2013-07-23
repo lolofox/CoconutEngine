@@ -7,3 +7,21 @@ install_manifest.txt
 # Ignoring buildengine file #
 buildengine/cmake
 buildengine/mingw
+
+# Object files
+*.o
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
