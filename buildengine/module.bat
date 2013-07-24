@@ -64,8 +64,84 @@ goto Failure
 		goto End
 		
 	:CreateApplication
-	:CreatePlugin
+		REM We have to get some information about the new application
+		REM like his name and his target name.
+		echo.
+		echo Please enter the library name :
+		set /p ApplicationnName=
+		pushd src
+		if exist %ApplicationName% goto ModuleCreationFailure
+		
+		mkdir %ApplicationName%
+		pushd %ApplicationName%
+		
+		echo.
+		echo Please enter a target name :
+		set /p TargetName=
+		
+		REM Now we have all needed information, we create the CMake file associated.
+		echo # ./src/%ApplicationName%/CMakeLists.txt>>CMakeLists.txt
+		echo. >>CMakeLists.txt
+		echo cmake_minimum_required(VERSION 2.8)>>CMakeLists.txt
+		echo. >>CMakeLists.txt
+		echo project(%ApplicationName%)>>CMakeLists.txt
+		echo. >>CMakeLists.txt
+		echo file(GLOB %ApplicationName%_source_file ./*)>>CMakeLists.txt
+		echo. >>CMakeLists.txt
+		echo add_executable(%ApplicationName% ${%TargetName%_source_file})>>CMakeLists.txt
+		
+		REM Now we need to register the new library to the BuildSystem.
+		pushd ..\..\
+		
+		echo add_subdirectory(src/%ApplicationName%)>>CMakeLists.txt
+		
+		popd
+		popd
+		popd
+		
+		echo.
+		
+		goto End
 	
+	:CreatePlugin
+		REM We have to get some information about the new plug-in
+		REM like his name and his target name.
+		echo.
+		echo Please enter the library name :
+		set /p PluginName=
+		pushd src
+		if exist %PluginName% goto ModuleCreationFailure
+		
+		mkdir %PluginName%
+		pushd %PluginName%
+		
+		echo.
+		echo Please enter a target name :
+		set /p TargetName=
+		
+		REM Now we have all needed information, we create the CMake file associated.
+		echo # ./src/%PluginName%/CMakeLists.txt>>CMakeLists.txt
+		echo. >>CMakeLists.txt
+		echo cmake_minimum_required(VERSION 2.8)>>CMakeLists.txt
+		echo. >>CMakeLists.txt
+		echo project(%PluginName%)>>CMakeLists.txt
+		echo. >>CMakeLists.txt
+		echo file(GLOB %PluginName%_source_file ./*)>>CMakeLists.txt
+		echo. >>CMakeLists.txt
+		echo add_library(%PluginName% MODULE ${%TargetName%_source_file})>>CMakeLists.txt
+		
+		REM Now we need to register the new library to the BuildSystem.
+		pushd ..\..\
+		
+		echo add_subdirectory(src/%PluginName%)>>CMakeLists.txt
+		
+		popd
+		popd
+		popd
+		
+		echo.
+		
+		goto End
 
 	:ModuleCreationFailure
 		echo.
