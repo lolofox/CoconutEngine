@@ -1,10 +1,8 @@
 ; ./src/core/hardware/cpu_spec.asm
 
-global cpuid_check
+SECTION .TEXT
 
-SECTION .text
-
-%if ARCH_X86_64 == 0
+GLOBAL cpuid_check
 
 ;------------------------------
 ; int cpuid_check(void)
@@ -31,5 +29,4 @@ cpuid_check:
 	pop		ebx
 	popfd
 	ret
-%endif
 	

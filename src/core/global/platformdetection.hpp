@@ -55,7 +55,7 @@
 
 #ifdef COCONUT_OS_WIN
 #	undef COCONUT_OS_UNIX
-#elif !define(COCONUT_OS_UNIX)
+#elif !defined(COCONUT_OS_UNIX)
 #	define COCONUT_OS_UNIX
 #endif
 

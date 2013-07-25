@@ -6,7 +6,8 @@ cmake_minimum_required(VERSION 2.8)
 project(core)
  
 # Creating the file list to be compiled.
-file(GLOB core_source_file ./*)
+file(GLOB core_source_file ./global/* ./hardware/*)
 
 # Creation the Target.
-add_library(SparkCore SHARED ${SparkCore_source_file})
+enable_language(ASM_YASM)
+add_library(SparkCore SHARED ${core_source_file})

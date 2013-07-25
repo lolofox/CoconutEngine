@@ -264,7 +264,7 @@
 #	endif
 #endif // COCONUT_CC_CLANG
 
-#if defined(COCONUT_CC_GNUC) && !deifned(COCONUT_CC_INTEL) && !defined(COCONUT_CC_CLANG)
+#if defined(COCONUT_CC_GNUC) && !defined(COCONUT_CC_INTEL) && !defined(COCONUT_CC_CLANG)
 #	if defined(__GXX_EXPERIMENTAL_CXX0X__) || __cplusplus >= 201103L
 #		if (__GNUC__ * 100 + __GNUC_MINOR__) >= 403
 			/* C++11 features supported in GCC 4.3: */
@@ -320,7 +320,7 @@
 #	endif
 #endif
 
-#if defined(COCONUT_CC_MSVC) && !define(COCONUT_CC_INTEL)
+#if defined(COCONUT_CC_MSVC) && !defined(COCONUT_CC_INTEL)
 #	if _MSC_VER >= 1400
 		/* C++11 features supported in VC8 = VC2005: */
 #		define COCONUT_COMPILER_VARIADOC_MACROS
@@ -453,15 +453,17 @@
 #endif
 #ifndef COCONUT_FUNC_INFO
 #	define COCONUT_FUNC_INFO __FILE "(line number unavailable)"
+#endif
 
 /*
 	Workaround for static const members on MSVC++.
 */
-#if defined(COCONUT_CC_MSVC_
+#if defined(COCONUT_CC_MSVC)
 #	define COCONUT_STATIC_CONST static
 #	define COCONUT_STATIC_CONST_IMPL
 #else
 #	define COCONUT_STATIC_CONST static const
 #	define COCONUT_STATIC_CONST_INPL const
+#endif
 
 #endif // __COCONUT_CORE_GLOBAL_COMPILERDETECTION__HPP__
