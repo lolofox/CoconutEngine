@@ -16,6 +16,9 @@
 */
 #define COCONUT_VERSION_CHECK(major, minor, patch) ((major << 16) | (minor <<  8) | (patch))
 
+#include "platformdetection.hpp"
+#include "compilerdetecction.hpp"
+
 #ifdef __cplusplus
 #	define COCONUT_PREPEND_NAMESPACE(name)	::Coconut::name
 #	define COCONUT_USE_NAMESPACE using namespace ::Coconut;
