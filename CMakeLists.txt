@@ -9,6 +9,12 @@ if(NOT CMAKE_BUILD_TYPE)
 		"Choose the type of build, options are: None(CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel."
 		FORCE)
 endif()
+
+if(NOT COCONUT_SHARED_BUILD)
+	set(COCONUT_SHARED_BUILD ON CACHE BOOL
+		"Choose the build type : shared / static"
+		FORCE)
+endif()
 		
 # If we're compiling under a 64-bits environment, we used to tell it to the compilers.
 if("${CMAKE_SIZEOF_VOID_P}" MATCHES 8)
@@ -31,11 +37,12 @@ set(EXECUTABLE_OUTPUT_DIRECTORY bin/${CMAKE_BUILD_TYPE})
 set(LIBRARY_OUTPUT_DIRECTORY bin/${CMAKE_BUILD_TYPE})
 
 # Settings C++ compiler flags.
-set(CMAKE_CXX_FLAGS "-march=core2 -mfpmath=sse -Wall -Wextra -pedantic -Wconversion -Wdouble-promotion -Wold-style-cast -Weffc++")
+set(CMAKE_CXX_FLAGS "-std=c++0x -march=core2 -mfpmath=sse -Wall -Wextra -pedantic -Wconversion -Wdouble-promotion -Wold-style-cast -Weffc++")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2 -Os -s")
 set(CMAKE_CXX-FLAGS_DEBUG "-g2")
 
-# Setting ASM_YASM flags.
-set(CMAKE_ASM_YASM_FLAGS "-f win32")
+if("${COCONUT_SHARED_BUILD}" MATCHES ON)
+	add_definitions(-DCOCONUT_SHARED)
+endif()
 
 add_subdirectory(src/core)
