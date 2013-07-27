@@ -43,6 +43,54 @@
 #endif
 
 /*
+	Choosing which kind of containers we want to use :
+		- STL ;
+		- Coconut implementation.
+*/
+#ifndef COCONUT_NO_STL
+namespace CoconutEngine
+{
+	namespace Core
+	{
+		// In this case we just create forward declaration of containers classes,
+		// they are defined in other files.
+		template <typename Type, size_t Size> class Array;
+		template <typename Type> class List;
+		template <typename Type> class Vector;
+		template <typename Type> class Set;
+		template <typename Key, typename Type> class Map;
+		template <typename Type> class Stack;
+		template <typename Type> class Queue;
+		
+		class String;
+	}
+}
+#else
+// In this other case we just include standard headers
+// and create aliases in Coconut namespaces.
+#	include <array>
+#	include <list>
+#	include <vector>
+#	include <set>
+#	include <map>
+#	include <stack>
+#	include <queue>
+namespace CoconutEngine
+{
+	namespace Core
+	{
+		template <typename Type, size_t Size> using Array = std::array<Type, Size>;
+		template <typename Type> using List = std::list<Type>;
+		template <typename Type> using Vector = std::vector<Type>;
+		template <typename Type> using Set = std::set<Type>;
+		template <typename Key, typename Type> using Map = std::map<Key, Type>;
+		template <typename Type> using Stack = std::stack<Type>;
+		template <typename Type> using Queue = std::queue<Type>;
+	}
+}
+#endif
+
+/*
 	Size-dependent types (architecture-dependent byte order)
 */
 namespace Coconut

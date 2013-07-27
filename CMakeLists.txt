@@ -15,11 +15,21 @@ if(NOT COCONUT_SHARED_BUILD)
 		"Choose the build type : shared / static"
 		FORCE)
 endif()
+
+if(NOT COCONUT_NO_STL)
+	set(COCONUT_NO_STL ON CACHE BOOL
+		"Choose if we want to use STL containers"
+		FORCE)
+endif()
 		
 # If we're compiling under a 64-bits environment, we used to tell it to the compilers.
 if("${CMAKE_SIZEOF_VOID_P}" MATCHES 8)
 	set(X86_64 1)
 	add_definitions(-DX86_64=1)
+endif()
+
+if("${COCONUT_NO_STL}" MATCHES ON)
+	add_definitions(-DCOCONUT_NO_STL)
 endif()
 
 # We need yasm compiler to compile the assembly part of the engine.
