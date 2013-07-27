@@ -1,5 +1,7 @@
-#ifndef __COCONUT_CORE_GLOBAL_TYPELIST_HPP__
-#define __COCONUT_CORE_GLOBAL_TYPELIST_HPP__
+#ifndef __COCONUTENGINE_CORE_GLOBAL_TYPELIST_HPP__
+#define __COCONUTENGINE_CORE_GLOBAL_TYPELIST_HPP__
+
+#include "typemanip.hpp"
 
 namespace CoconutEngine
 {
@@ -15,7 +17,7 @@ namespace CoconutEngine
 		struct NullType { }; /* Empty type to represent the end of a list of type. */
 		
 		/* Helper structure to create a list of type. */
-		template <template... Types> struct MakeTypeList;
+		template <typename... Types> struct MakeTypeList;
 		
 		template <typename First, typename ...Others>
 		struct MakeTypeList<First, Others...>
@@ -54,34 +56,34 @@ namespace CoconutEngine
 	TypeList<t1, TYPELIST_8(t2, t3, t4, t5, t6, t7, t8, t9)>
 #define TYPELIST_10(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10) \
 	TypeList<t1, TYPELIST_9(t2, t3, t4, t5, t6, t7, t8, t9, t10)>
-#define TYPELIST_11(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_11(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11) \
 	TypeList<t1, TYPELIST_10(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11)>
-#define TYPELIST_12(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_12(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11, t12) \
 	TypeList<t1, TYPELIST_11(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12)>
-#define TYPELIST_13(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_13(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11, t12, t13) \
 	TypeList<t1, TYPELIST_12(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13)>
-#define TYPELIST_14(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_14(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11, t12, t13, t14) \
 	TypeList<t1, TYPELIST_13(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14)>
-#define TYPELIST_15(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_15(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11, t12, t13, t14, t15) \
 	TypeList<t1, TYPELIST_14(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15)>
-#define TYPELIST_16(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_16(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11, t12, t13, t14, t15, t16) \
 	TypeList<t1, TYPELIST_15(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16)>
-#define TYPELIST_17(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_17(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11, t12, t13, t14, t15, t16, t17) \
 	TypeList<t1, TYPELIST_16(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17)>
-#define TYPELIST_18(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_18(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11, t12, t13, t14, t15, t16, t17, t18) \
 	TypeList<t1, TYPELIST_17(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18)>
-#define TYPELIST_19(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_19(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11, t12, t13, t14, t15, t16, t17, t18, t19) \
 	TypeList<t1, TYPELIST_18(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19)>
-#define TYPELIST_20(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10 \
+#define TYPELIST_20(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, \
 	t11, t12, t13, t14, t15, t16, t17, t18, t19, t20) \
 	TypeList<t1, TYPELIST_19(t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20)>
 	
@@ -117,7 +119,7 @@ namespace CoconutEngine
 			return s the type in position 'index' in TList
 			If you pass out-of-bounds index, the result is a compile-time error
 		*/
-		template <typename TList, unsigned in index> struct TypeAt,
+		template <typename TList, unsigned int index> struct TypeAt;
 		
 		template <typename Head, typename Tail>
 		struct TypeAt<TypeList<Head, Tail>, 0>
@@ -154,9 +156,9 @@ namespace CoconutEngine
 		};
 		
 		template <typename Head, typename Tail, unsigned int i, typename DefaultType>
-		struct TypeAtNonStruct<TypeList<Head, Tail>, i, DefaultType>
+		struct TypeAtNonStrict<TypeList<Head, Tail>, i, DefaultType>
 		{
-			typedef typename TypeAtNonStruct<Tail, i - 1, DefaultType>::ResultType Result;
+			typedef typename TypeAtNonStrict<Tail, i - 1, DefaultType>::ResultType Result;
 		};
 		
 		/*
@@ -174,14 +176,14 @@ namespace CoconutEngine
 			enum { value = -1 };
 		};
 		
-		template <typename T>
-		struct IndefOf<TypeList<T, Tail>, T>
+		template <typename T, typename Tail>
+		struct IndexOf<TypeList<T, Tail>, T>
 		{
 			enum { Value = 0 };
 		};
 		
 		template <typename Head, typename Tail, typename T>
-		struct IndexOf<TypeList<Headm Taiil>, T>
+		struct IndexOf<TypeList<Head, Tail>, T>
 		{
 			private:
 				enum { temp = IndexOf<Tail, T>::Value };
@@ -263,7 +265,7 @@ namespace CoconutEngine
 		struct EraseAll;
 		
 		template <typename T>
-		struct EraseAll<NullTYpe, T>
+		struct EraseAll<NullType, T>
 		{
 			typedef NullType Result;
 		};
@@ -297,10 +299,10 @@ namespace CoconutEngine
 		};
 		
 		template <typename Head, typename Tail>
-		struct NoDuplicates<TypeList<Headm Tail> >
+		struct NoDuplicates<TypeList<Head, Tail> >
 		{
 			private:
-				typedef typename NoDupplicates<Tail>::Result L1;
+				typedef typename NoDuplicates<Tail>::Result L1;
 				typedef typename Erase<L1, Head>::Result L2;
 			public:
 				typedef TypeList<Head, L2> Result;
@@ -308,10 +310,10 @@ namespace CoconutEngine
 		
 		/*
 			Class template Replace
-			Replaces the first occurence of a type in a typelistm with another type
+			Replaces the first occurence of a type in a typelist with another type
 			Invocation (TList is a typelist, T, U are types) :
 			Replace<TList, T, U>::Result
-			return s typelist in which the first occurence of T is replaces with U
+			returns typelist in which the first occurence of T is replaces with U
 		*/
 		template <typename TList, typename T, typename U> struct Replace;
 		
@@ -321,13 +323,13 @@ namespace CoconutEngine
 			typedef NullType Result;
 		};
 		
-		template <typename T, typename Tail, typename S>
-		struct Replace<Typename<T, Tail>, T, U>
+		template <typename T, typename Tail, typename U>
+		struct Replace<TypeList<T, Tail>, T, U>
 		{
 			typedef TypeList<U, Tail> Result;
 		};
 		
-		template <typename Headm typename Tail, typename T, typename U>
+		template <typename Head, typename Tail, typename T, typename U>
 		struct Replace<TypeList<Head, Tail>, T, U>
 		{
 			typedef TypeList<Head,
@@ -379,11 +381,11 @@ namespace CoconutEngine
 			typedef NullType Result;
 		};
 		
-		template <typename Headm typename Tail>
-		strut Reserve<TypeList<Headm Tail> >
+		template <typename Head, typename Tail>
+		struct Reverse<TypeList<Head, Tail> >
 		{
 			typedef typename Append<
-				typename Reserve<Tail>::Result, Head>::Result Result;
+				typename Reverse<Tail>::Result, Head>::Result Result;
 		};
 		
 		/*
@@ -395,19 +397,19 @@ namespace CoconutEngine
 		*/
 		template <typename TList, typename T> struct MostDerived;
 		
-		template <typename T>
-		struct MostDerived<NullType, T>
+		template <typename Head, typename Tail, typename T>
+		struct MostDerived<TypeList<Head, Tail>, T>
 		{
 			private:
-				typedef typename MotDerived<Tail, T>::Result Candidate;
+				typedef typename MostDerived<Tail, T>::Result Candidate;
 			public:
 				typedef typename Select<
-					SuperSubclass<Candidate, Head>::value,
+					SuperSubClass<Candidate, Head>::value,
 						Head, Candidate>::Result Result;
 		};
 		
 		/*
-			Class template DerivedToFron
+			Class template DerivedToFront
 			Arranges the types in a typelist so that the most derived types appear first
 			Invocation (TList is a typelist) :
 			DerivedToFront<TList>::Result
@@ -436,4 +438,4 @@ namespace CoconutEngine
 	}
 }
 
-#endif // __COCONUT_CORE_GLOBAL_TYPELIST_HPP__
+#endif // __COCONUTENGINE_CORE_GLOBAL_TYPELIST_HPP__

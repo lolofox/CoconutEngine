@@ -33,8 +33,8 @@ if(YASM_FOUND)
 endif(YASM_FOUND)
 
 # Setting output directories.
-set(EXECUTABLE_OUTPUT_DIRECTORY bin/${CMAKE_BUILD_TYPE})
-set(LIBRARY_OUTPUT_DIRECTORY bin/${CMAKE_BUILD_TYPE})
+set(EXECUTABLE_OUTPUT_DIRECTORY ../../bin/${CMAKE_BUILD_TYPE})
+set(LIBRARY_OUTPUT_DIRECTORY ../../bin/${CMAKE_BUILD_TYPE})
 
 # Settings C++ compiler flags.
 set(CMAKE_CXX_FLAGS "-std=c++0x -march=core2 -mfpmath=sse -Wall -Wextra -pedantic -Wconversion -Wdouble-promotion -Wold-style-cast -Weffc++")
